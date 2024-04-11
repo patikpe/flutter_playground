@@ -1,3 +1,3 @@
 # flutter_playground
 
-A new Flutter project.
+My personal flutter test playground
