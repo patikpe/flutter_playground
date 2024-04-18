@@ -1,5 +1,5 @@
 # flutter_playground
 My personal flutter test playground
 
-#Firebase
+# Firebase
 Use "flutterfire configure" to get configuration for firebase
