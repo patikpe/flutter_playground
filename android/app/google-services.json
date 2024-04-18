@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "380612199205",
+    "project_id": "flutterplaygroundfb",
+    "storage_bucket": "flutterplaygroundfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380612199205:android:ec1a9e4d482ff0969e90cc",
+        "android_client_info": {
+          "package_name": "com.example.flutter_playground"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmTRdhA9O0K4TW_PsRp1snXhYCnHhQuzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
