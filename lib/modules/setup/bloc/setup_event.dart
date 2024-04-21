@@ -6,3 +6,7 @@ sealed class SetupEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class StartSetup extends SetupEvent {}
+
+class StartSetupTest extends SetupEvent {}
