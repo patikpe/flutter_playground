@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_playground/l10n/generated/l10n.dart';
 import 'package:logging/logging.dart';
 
 part 'setup_event.dart';
@@ -16,7 +17,7 @@ class SetupBloc extends Bloc<SetupEvent, SetupState> {
   }
 
   FutureOr<void> _startSetup(StartSetup event, Emitter<SetupState> emit) {
-    _logger.info('Starting setup...');
+    _logger.info(S.current.test);
   }
 
   FutureOr<void> _startSetupTest(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/app/router/app_router.dart';
 import 'package:flutter_playground/app/theme/theme.dart';
-import 'package:flutter_playground/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_playground/l10n/generated/l10n.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

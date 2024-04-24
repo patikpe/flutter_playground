@@ -29,3 +29,4 @@ flutter:
   uses-material-design: true
 flutter_intl:
   enabled: true
+  output_dir: lib/l10n/generated
