@@ -50,11 +50,31 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `test`
-  String get test {
+  /// `Login`
+  String get login {
     return Intl.message(
-      'test',
-      name: 'test',
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guest mode`
+  String get guest_mode {
+    return Intl.message(
+      'Guest mode',
+      name: 'guest_mode',
       desc: '',
       args: [],
     );
