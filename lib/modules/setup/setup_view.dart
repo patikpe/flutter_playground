@@ -4,14 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_playground/modules/setup/cubit/setup_cubit.dart';
 import 'package:go_router/go_router.dart';
 
-class SetupView extends StatefulWidget {
+class SetupView extends StatelessWidget {
   const SetupView({super.key});
 
-  @override
-  State<SetupView> createState() => _SetupViewState();
-}
-
-class _SetupViewState extends State<SetupView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -22,12 +17,14 @@ class _SetupViewState extends State<SetupView> {
             context.go('/login');
           }
         },
-        child: Builder(builder: (context) {
-          SchedulerBinding.instance.addPostFrameCallback((_) {
-            context.read<SetupCubit>().redirectLoginScreen();
-          });
-          return const Placeholder();
-        }),
+        child: Builder(
+          builder: (context) {
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              context.read<SetupCubit>().redirectLoginScreen();
+            });
+            return const Placeholder();
+          },
+        ),
       ),
     );
   }
