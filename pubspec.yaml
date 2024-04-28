@@ -19,6 +19,7 @@ dependencies:
   intl: ^0.18.1
   logging: ^1.2.0
   flutter_bloc: ^8.1.5
+  flutter_form_builder: ^9.2.1
 
 dev_dependencies:
   flutter_test:

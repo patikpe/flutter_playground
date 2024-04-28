@@ -1,4 +1,4 @@
-import 'package:flutter_playground/modules/setup/view/setup_view.dart';
+import 'package:flutter_playground/modules/auth/view/auth_view.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -7,7 +7,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SetupView(),
+        builder: (context, state) => const AuthView(),
       ),
     ],
   );
