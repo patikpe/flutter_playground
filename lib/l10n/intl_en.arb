@@ -1,5 +1,9 @@
 {
     "login": "Login",
     "register": "Register",
-    "guest_mode": "Guest mode"
+    "reset_password": "Reset Password",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "submit": "Submit"
 }
