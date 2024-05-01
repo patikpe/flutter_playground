@@ -2,10 +2,32 @@ import 'package:flutter/material.dart';
 
 class FPTheme {
   ThemeData get lightTheme => ThemeData(
-        colorScheme: const ColorScheme.light(),
+        colorScheme: const ColorScheme.dark(),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(const Size(300, 50)),
+          shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)))),
+        )),
       );
 
   ThemeData get darkTheme => ThemeData(
         colorScheme: const ColorScheme.dark(),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(const Size(300, 50)),
+          shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)))),
+        )),
       );
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_playground/l10n/generated/l10n.dart';
 import 'package:flutter_playground/modules/register/cubit/register_cubit.dart';
+import 'package:flutter_playground/utilities/form_values_enum.dart';
 import 'package:go_router/go_router.dart';
 
 class RegisterView extends StatelessWidget {
@@ -38,22 +39,34 @@ class RegisterView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FormBuilderTextField(
-                        name: 'NAME',
-                        onChanged: (val) {},
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: FormBuilderTextField(
+                          name: FormEnumValues.email.name,
+                          decoration: InputDecoration(
+                            labelText: S.current.email,
+                          ),
+                          onChanged: (val) {},
+                        ),
                       ),
-                      FormBuilderTextField(
-                        name: 'PASSWORD',
-                        onChanged: (val) {},
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: FormBuilderTextField(
+                          name: FormEnumValues.password.name,
+                          decoration: InputDecoration(
+                            labelText: S.current.password,
+                          ),
+                          onChanged: (val) {},
+                        ),
                       ),
-                      MaterialButton(
+                      ElevatedButton(
                         onPressed: () {},
                         child: Text(S.current.submit),
                       ),
                     ],
                   ),
                 ),
-                MaterialButton(
+                ElevatedButton(
                   onPressed: () => context.push('/login'),
                   child: Text(S.current.login),
                 ),

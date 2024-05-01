@@ -1,0 +1,4 @@
+enum FormEnumValues {
+  email,
+  password,
+}
