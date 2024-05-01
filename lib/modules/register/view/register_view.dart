@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_playground/l10n/generated/l10n.dart';
-import 'package:flutter_playground/modules/login/cubit/login_cubit.dart';
+import 'package:flutter_playground/modules/register/cubit/register_cubit.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginView extends StatelessWidget {
-  LoginView({super.key});
+class RegisterView extends StatelessWidget {
+  RegisterView({super.key});
 
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => RegisterCubit(),
       child: Scaffold(
         body: Center(
           child: Container(
@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  S.current.login,
+                  S.current.register,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 FormBuilder(
@@ -54,12 +54,8 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 MaterialButton(
-                  onPressed: () {},
-                  child: Text(S.current.reset_password),
-                ),
-                MaterialButton(
-                  onPressed: () => context.push('/register'),
-                  child: Text(S.current.register),
+                  onPressed: () => context.push('/login'),
+                  child: Text(S.current.login),
                 ),
               ],
             ),

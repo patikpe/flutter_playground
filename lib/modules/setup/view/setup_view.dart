@@ -14,7 +14,7 @@ class SetupView extends StatelessWidget {
       child: BlocListener<SetupCubit, SetupState>(
         listener: (context, state) {
           if (state.status == SetupStatus.redirectLoginScreen) {
-            context.go('/login');
+            context.push('/login');
           }
         },
         child: Builder(

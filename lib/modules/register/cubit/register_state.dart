@@ -1,10 +1,29 @@
 part of 'register_cubit.dart';
 
-sealed class RegisterState extends Equatable {
-  const RegisterState();
-
-  @override
-  List<Object> get props => [];
+enum RegisterStatus {
+  initial,
+  loading,
+  success,
+  error,
 }
 
-final class RegisterInitial extends RegisterState {}
+final class RegisterState extends Equatable {
+  final RegisterStatus status;
+
+  const RegisterState({
+    this.status = RegisterStatus.initial,
+  });
+
+  RegisterState copyWith({
+    RegisterStatus? status,
+  }) {
+    return RegisterState(
+      status: status ?? this.status,
+    );
+  }
+
+  @override
+  List<Object> get props => [
+        status,
+      ];
+}
