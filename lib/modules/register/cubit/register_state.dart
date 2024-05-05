@@ -5,6 +5,10 @@ enum RegisterStatus {
   loading,
   success,
   error,
+  weakPassword,
+  emailAlreadyInUse,
+  invalidEmail,
+  operationNotAllowed,
 }
 
 final class RegisterState extends Equatable {

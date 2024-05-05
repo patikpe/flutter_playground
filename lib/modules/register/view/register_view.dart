@@ -15,65 +15,79 @@ class RegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RegisterCubit(),
-      child: Scaffold(
-        body: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.blue,
-            ),
-            padding: const EdgeInsets.all(20),
-            constraints: const BoxConstraints(
-              maxHeight: 500,
-              maxWidth: 300,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  S.current.register,
-                  style: Theme.of(context).textTheme.titleLarge,
+      child: BlocConsumer<RegisterCubit, RegisterState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Scaffold(
+            body: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.blue,
                 ),
-                FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: FormBuilderTextField(
-                          name: FormEnumValues.email.name,
-                          decoration: InputDecoration(
-                            labelText: S.current.email,
+                padding: const EdgeInsets.all(20),
+                constraints: const BoxConstraints(
+                  maxHeight: 500,
+                  maxWidth: 300,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      S.current.register,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    FormBuilder(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: FormBuilderTextField(
+                              name: FormEnumValues.email.name,
+                              decoration: InputDecoration(
+                                labelText: S.current.email,
+                              ),
+                              onChanged: (val) {},
+                            ),
                           ),
-                          onChanged: (val) {},
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: FormBuilderTextField(
-                          name: FormEnumValues.password.name,
-                          decoration: InputDecoration(
-                            labelText: S.current.password,
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: FormBuilderTextField(
+                              name: FormEnumValues.password.name,
+                              decoration: InputDecoration(
+                                labelText: S.current.password,
+                              ),
+                              onChanged: (val) {},
+                            ),
                           ),
-                          onChanged: (val) {},
-                        ),
+                          ElevatedButton(
+                            onPressed: () {
+                              _formKey.currentState?.save();
+
+                              context.read<RegisterCubit>().registerNewUser(
+                                    _formKey.currentState!
+                                        .value[FormEnumValues.email.name],
+                                    _formKey.currentState!
+                                        .value[FormEnumValues.password.name],
+                                  );
+                            },
+                            child: Text(S.current.submit),
+                          ),
+                        ],
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text(S.current.submit),
-                      ),
-                    ],
-                  ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => context.push('/login'),
+                      child: Text(S.current.login),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () => context.push('/login'),
-                  child: Text(S.current.login),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
