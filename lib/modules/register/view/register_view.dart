@@ -49,7 +49,6 @@ class RegisterView extends StatelessWidget {
                               decoration: InputDecoration(
                                 labelText: S.current.email,
                               ),
-                              onChanged: (val) {},
                             ),
                           ),
                           Padding(
@@ -59,7 +58,15 @@ class RegisterView extends StatelessWidget {
                               decoration: InputDecoration(
                                 labelText: S.current.password,
                               ),
-                              onChanged: (val) {},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: FormBuilderTextField(
+                              name: FormEnumValues.confirmPassword.name,
+                              decoration: InputDecoration(
+                                labelText: S.current.confirm_password,
+                              ),
                             ),
                           ),
                           ElevatedButton(
