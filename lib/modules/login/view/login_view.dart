@@ -66,10 +66,10 @@ class LoginView extends StatelessWidget {
                     ],
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text(S.current.reset_password),
-                ),
+                // ElevatedButton(
+                //   onPressed: () {},
+                //   child: Text(S.current.reset_password),
+                // ),
                 ElevatedButton(
                   onPressed: () => context.push('/register'),
                   child: Text(S.current.register),

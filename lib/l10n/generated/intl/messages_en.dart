@@ -27,11 +27,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_password_error":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "email_already_in_use": MessageLookupByLibrary.simpleMessage(
+            "Email address is already in use"),
+        "error_try_again": MessageLookupByLibrary.simpleMessage(
+            "An error occurred. Please try again later"),
+        "invalid_email": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid email address"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "required_field":
+            MessageLookupByLibrary.simpleMessage("This field is required"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Reset Password"),
-        "submit": MessageLookupByLibrary.simpleMessage("Submit")
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "weak_password": MessageLookupByLibrary.simpleMessage(
+            "Password must be at least 6 characters long")
       };
 }

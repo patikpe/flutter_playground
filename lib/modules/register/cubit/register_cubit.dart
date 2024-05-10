@@ -11,6 +11,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   final _log = Logger('RegisterCubit');
 
   void registerNewUser(String email, String password) async {
+    emit(state.copyWith(
+      status: RegisterStatus.loading,
+    ));
     try {
       UserCredential credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(

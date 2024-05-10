@@ -129,6 +129,56 @@ class S {
       args: [],
     );
   }
+
+  /// `This field is required`
+  String get required_field {
+    return Intl.message(
+      'This field is required',
+      name: 'required_field',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address`
+  String get invalid_email {
+    return Intl.message(
+      'Please enter a valid email address',
+      name: 'invalid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 6 characters long`
+  String get weak_password {
+    return Intl.message(
+      'Password must be at least 6 characters long',
+      name: 'weak_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email address is already in use`
+  String get email_already_in_use {
+    return Intl.message(
+      'Email address is already in use',
+      name: 'email_already_in_use',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred. Please try again later`
+  String get error_try_again {
+    return Intl.message(
+      'An error occurred. Please try again later',
+      name: 'error_try_again',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

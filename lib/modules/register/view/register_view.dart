@@ -11,12 +11,39 @@ class RegisterView extends StatelessWidget {
 
   final _formKey = GlobalKey<FormBuilderState>();
 
+  final TextEditingController _passwordConfirm = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.status == RegisterStatus.success) {
+            context.go('/home');
+          } else if (state.status == RegisterStatus.weakPassword) {
+            _formKey.currentState?.fields[FormEnumValues.password.name]
+                ?.invalidate(S.current.weak_password);
+          } else if (state.status == RegisterStatus.emailAlreadyInUse) {
+            _formKey.currentState?.fields[FormEnumValues.email.name]
+                ?.invalidate(S.current.email_already_in_use);
+          } else if (state.status == RegisterStatus.invalidEmail) {
+            _formKey.currentState?.fields[FormEnumValues.email.name]
+                ?.invalidate(S.current.invalid_email);
+          } else if (state.status == RegisterStatus.operationNotAllowed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(S.current.error_try_again),
+              ),
+            );
+          } else if (state.status == RegisterStatus.error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(S.current.error_try_again),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             body: Center(
@@ -45,48 +72,89 @@ class RegisterView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
+                              enabled: state.status == RegisterStatus.loading
+                                  ? false
+                                  : true,
                               name: FormEnumValues.email.name,
                               decoration: InputDecoration(
                                 labelText: S.current.email,
                               ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return S.current.required_field;
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
+                              enabled: state.status == RegisterStatus.loading
+                                  ? false
+                                  : true,
                               name: FormEnumValues.password.name,
                               decoration: InputDecoration(
                                 labelText: S.current.password,
                               ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return S.current.required_field;
+                                } else if (value != _passwordConfirm.text) {
+                                  return S.current.confirm_password_error;
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
+                              controller: _passwordConfirm,
+                              enabled: state.status == RegisterStatus.loading
+                                  ? false
+                                  : true,
                               name: FormEnumValues.confirmPassword.name,
                               decoration: InputDecoration(
                                 labelText: S.current.confirm_password,
                               ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return S.current.required_field;
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              _formKey.currentState?.save();
-
-                              context.read<RegisterCubit>().registerNewUser(
-                                    _formKey.currentState!
-                                        .value[FormEnumValues.email.name],
-                                    _formKey.currentState!
-                                        .value[FormEnumValues.password.name],
-                                  );
+                              if (state.status != RegisterStatus.loading) {
+                                bool? isValid =
+                                    _formKey.currentState?.validate();
+                                if (isValid == true) {
+                                  _formKey.currentState?.save();
+                                  context.read<RegisterCubit>().registerNewUser(
+                                        _formKey.currentState!
+                                            .value[FormEnumValues.email.name],
+                                        _formKey.currentState!.value[
+                                            FormEnumValues.password.name],
+                                      );
+                                }
+                              }
                             },
-                            child: Text(S.current.submit),
+                            child: state.status == RegisterStatus.loading
+                                ? const CircularProgressIndicator()
+                                : Text(S.current.submit),
                           ),
                         ],
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () => context.push('/login'),
+                      onPressed: () {
+                        if (state.status != RegisterStatus.loading) {
+                          context.push('/login');
+                        }
+                      },
                       child: Text(S.current.login),
                     ),
                   ],
