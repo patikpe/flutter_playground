@@ -123,10 +123,6 @@ class LoginView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // ElevatedButton(
-                    //   onPressed: () {},
-                    //   child: Text(S.current.reset_password),
-                    // ),
                     ElevatedButton(
                       onPressed: () {
                         if (state.status != LoginStatus.loading) {
