@@ -20,11 +20,16 @@ dependencies:
   logging: ^1.2.0
   flutter_bloc: ^8.1.5
   flutter_form_builder: ^9.2.1
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splash_screen.png
 
 flutter:
   uses-material-design: true
