@@ -5,6 +5,10 @@ enum LoginStatus {
   loading,
   success,
   error,
+  userNotFound,
+  wrongPassword,
+  userDisabled,
+  invalidEmail,
 }
 
 final class LoginState extends Equatable {

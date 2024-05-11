@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Email address is already in use"),
         "error_try_again": MessageLookupByLibrary.simpleMessage(
             "An error occurred. Please try again later"),
+        "invalid_credentials":
+            MessageLookupByLibrary.simpleMessage("Invalid email or password"),
         "invalid_email": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid email address"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),

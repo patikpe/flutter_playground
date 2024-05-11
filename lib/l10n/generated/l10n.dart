@@ -179,6 +179,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Invalid email or password`
+  String get invalid_credentials {
+    return Intl.message(
+      'Invalid email or password',
+      name: 'invalid_credentials',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -15,69 +15,132 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LoginCubit(),
-      child: Scaffold(
-        body: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.blue,
-            ),
-            padding: const EdgeInsets.all(20),
-            constraints: const BoxConstraints(
-              maxHeight: 500,
-              maxWidth: 300,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  S.current.login,
-                  style: Theme.of(context).textTheme.titleLarge,
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state.status == LoginStatus.success) {
+            context.go('/home');
+          } else if (state.status == LoginStatus.userNotFound) {
+            _formKey.currentState?.fields[FormEnumValues.email.name]
+                ?.invalidate(S.current.invalid_credentials);
+          } else if (state.status == LoginStatus.wrongPassword) {
+            _formKey.currentState?.fields[FormEnumValues.email.name]
+                ?.invalidate(S.current.invalid_credentials);
+          } else if (state.status == LoginStatus.userDisabled) {
+            _formKey.currentState?.fields[FormEnumValues.email.name]
+                ?.invalidate(S.current.invalid_credentials);
+          } else if (state.status == LoginStatus.invalidEmail) {
+            _formKey.currentState?.fields[FormEnumValues.email.name]
+                ?.invalidate(S.current.invalid_credentials);
+          } else if (state.status == LoginStatus.error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(S.current.error_try_again),
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.blue,
                 ),
-                FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: FormBuilderTextField(
-                          name: FormEnumValues.email.name,
-                          decoration: InputDecoration(
-                            labelText: S.current.email,
+                padding: const EdgeInsets.all(20),
+                constraints: const BoxConstraints(
+                  maxHeight: 500,
+                  maxWidth: 300,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      S.current.login,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    FormBuilder(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: FormBuilderTextField(
+                              name: FormEnumValues.email.name,
+                              enabled: state.status == LoginStatus.loading
+                                  ? false
+                                  : true,
+                              decoration: InputDecoration(
+                                labelText: S.current.email,
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return S.current.required_field;
+                                }
+                                return null;
+                              },
+                            ),
                           ),
-                          onChanged: (val) {},
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: FormBuilderTextField(
-                          name: FormEnumValues.password.name,
-                          decoration: InputDecoration(
-                            labelText: S.current.password,
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: FormBuilderTextField(
+                              name: FormEnumValues.password.name,
+                              enabled: state.status == LoginStatus.loading
+                                  ? false
+                                  : true,
+                              decoration: InputDecoration(
+                                labelText: S.current.password,
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return S.current.required_field;
+                                }
+                                return null;
+                              },
+                            ),
                           ),
-                          onChanged: (val) {},
-                        ),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (state.status != LoginStatus.loading) {
+                                bool? isValid =
+                                    _formKey.currentState?.validate();
+                                if (isValid == true) {
+                                  _formKey.currentState?.save();
+                                  context.read<LoginCubit>().loginUser(
+                                        _formKey.currentState!
+                                            .value[FormEnumValues.email.name],
+                                        _formKey.currentState!.value[
+                                            FormEnumValues.password.name],
+                                      );
+                                }
+                              }
+                            },
+                            child: state.status == LoginStatus.loading
+                                ? const CircularProgressIndicator()
+                                : Text(S.current.submit),
+                          ),
+                        ],
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text(S.current.submit),
-                      ),
-                    ],
-                  ),
+                    ),
+                    // ElevatedButton(
+                    //   onPressed: () {},
+                    //   child: Text(S.current.reset_password),
+                    // ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (state.status != LoginStatus.loading) {
+                          context.push('/register');
+                        }
+                      },
+                      child: Text(S.current.register),
+                    ),
+                  ],
                 ),
-                // ElevatedButton(
-                //   onPressed: () {},
-                //   child: Text(S.current.reset_password),
-                // ),
-                ElevatedButton(
-                  onPressed: () => context.push('/register'),
-                  child: Text(S.current.register),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

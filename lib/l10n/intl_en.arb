@@ -11,5 +11,6 @@
     "invalid_email": "Please enter a valid email address",
     "weak_password": "Password must be at least 6 characters long",
     "email_already_in_use": "Email address is already in use",
-    "error_try_again": "An error occurred. Please try again later"
+    "error_try_again": "An error occurred. Please try again later",
+    "invalid_credentials": "Invalid email or password"
 }
