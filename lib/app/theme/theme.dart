@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class FPTheme {
   ThemeData get lightTheme => ThemeData(
-        colorScheme: const ColorScheme.dark(),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.light,
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -17,7 +20,10 @@ class FPTheme {
       );
 
   ThemeData get darkTheme => ThemeData(
-        colorScheme: const ColorScheme.dark(),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          brightness: Brightness.dark,
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),

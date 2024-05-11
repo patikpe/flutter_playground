@@ -50,7 +50,7 @@ class RegisterView extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue,
+                  color: Theme.of(context).colorScheme.primaryContainer,
                 ),
                 padding: const EdgeInsets.all(20),
                 constraints: const BoxConstraints(
