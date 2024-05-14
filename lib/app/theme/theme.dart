@@ -13,8 +13,8 @@ class FPTheme {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(const Size(300, 50)),
-          shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
+          minimumSize: WidgetStateProperty.all(const Size(300, 50)),
+          shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)))),
         )),
       );
@@ -31,8 +31,8 @@ class FPTheme {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(const Size(300, 50)),
-          shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
+          minimumSize: WidgetStateProperty.all(const Size(300, 50)),
+          shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)))),
         )),
       );
