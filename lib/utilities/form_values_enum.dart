@@ -1,5 +1,9 @@
 enum FormEnumValues {
-  email,
-  password,
-  confirmPassword,
+  email(code: 'email'),
+  password(code: 'password'),
+  confirmPassword(code: 'confirmPassword');
+
+  const FormEnumValues({required this.code});
+
+  final String code;
 }

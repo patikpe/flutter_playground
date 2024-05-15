@@ -21,7 +21,7 @@ dependencies:
   flutter_bloc: ^8.1.5
   flutter_form_builder: ^9.2.1
   flutter_native_splash: ^2.4.0
-  objectbox: ^2.5.1
+  objectbox: ^4.0.0
   objectbox_flutter_libs: any
 
 dev_dependencies:
