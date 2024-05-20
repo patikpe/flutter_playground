@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logging/logging.dart';
 
 part 'setup_state.dart';
@@ -11,6 +12,7 @@ class SetupCubit extends Cubit<SetupState> {
 
   void redirectLoginScreen() {
     _log.info('Redirecting to login screen');
+    var currentUser = FirebaseAuth.instance.currentUser;
     emit(state.copyWith(status: SetupStatus.redirectLoginScreen));
   }
 }
