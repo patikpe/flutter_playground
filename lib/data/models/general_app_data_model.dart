@@ -5,5 +5,9 @@ class GeneralAppDataModel {
   @Id(assignable: true)
   int id = 0;
 
-  GeneralAppDataModel();
+  String? name;
+
+  GeneralAppDataModel({
+    this.name,
+  });
 }

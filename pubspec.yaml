@@ -30,6 +30,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   build_runner: ^2.4.9
   objectbox_generator: any
+  test: ^1.25.2
 
 flutter_native_splash:
   color: "#ffffff"
