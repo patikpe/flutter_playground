@@ -1,3 +1,4 @@
+import 'package:flutter_playground/modules/home/view/home_view.dart';
 import 'package:flutter_playground/modules/login/view/login_view.dart';
 import 'package:flutter_playground/modules/register/view/register_view.dart';
 import 'package:flutter_playground/modules/setup/view/setup_view.dart';
@@ -18,6 +19,10 @@ class AppRouter {
       GoRoute(
         path: '/register',
         builder: (context, state) => RegisterView(),
+      ),
+      GoRoute(
+        path: '/home',
+        builder: (context, state) => const HomeView(),
       ),
     ],
   );
