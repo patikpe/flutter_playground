@@ -20,16 +20,16 @@ class LoginView extends StatelessWidget {
           if (state.status == LoginStatus.success) {
             context.go('/home');
           } else if (state.status == LoginStatus.userNotFound) {
-            _formKey.currentState?.fields[FormEnumValues.email.name]
+            _formKey.currentState?.fields[FormEnumValues.email.code]
                 ?.invalidate(S.current.invalid_credentials);
           } else if (state.status == LoginStatus.wrongPassword) {
-            _formKey.currentState?.fields[FormEnumValues.email.name]
+            _formKey.currentState?.fields[FormEnumValues.email.code]
                 ?.invalidate(S.current.invalid_credentials);
           } else if (state.status == LoginStatus.userDisabled) {
-            _formKey.currentState?.fields[FormEnumValues.email.name]
+            _formKey.currentState?.fields[FormEnumValues.email.code]
                 ?.invalidate(S.current.invalid_credentials);
           } else if (state.status == LoginStatus.invalidEmail) {
-            _formKey.currentState?.fields[FormEnumValues.email.name]
+            _formKey.currentState?.fields[FormEnumValues.email.code]
                 ?.invalidate(S.current.invalid_credentials);
           } else if (state.status == LoginStatus.error) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -67,7 +67,7 @@ class LoginView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
-                              name: FormEnumValues.email.name,
+                              name: FormEnumValues.email.code,
                               enabled: state.status == LoginStatus.loading
                                   ? false
                                   : true,
@@ -85,7 +85,7 @@ class LoginView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
-                              name: FormEnumValues.password.name,
+                              name: FormEnumValues.password.code,
                               enabled: state.status == LoginStatus.loading
                                   ? false
                                   : true,
@@ -109,9 +109,9 @@ class LoginView extends StatelessWidget {
                                   _formKey.currentState?.save();
                                   context.read<LoginCubit>().loginUser(
                                         _formKey.currentState!
-                                            .value[FormEnumValues.email.name],
+                                            .value[FormEnumValues.email.code],
                                         _formKey.currentState!.value[
-                                            FormEnumValues.password.name],
+                                            FormEnumValues.password.code],
                                       );
                                 }
                               }

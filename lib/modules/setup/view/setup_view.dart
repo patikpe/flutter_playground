@@ -25,7 +25,7 @@ class SetupView extends StatelessWidget {
         child: Builder(
           builder: (context) {
             SchedulerBinding.instance.addPostFrameCallback((_) {
-              context.read<SetupCubit>().redirectLoginScreen();
+              context.read<SetupCubit>().verifySignedInUser();
             });
             return const SizedBox();
           },

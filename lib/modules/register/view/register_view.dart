@@ -22,13 +22,13 @@ class RegisterView extends StatelessWidget {
           if (state.status == RegisterStatus.success) {
             context.go('/home');
           } else if (state.status == RegisterStatus.weakPassword) {
-            _formKey.currentState?.fields[FormEnumValues.password.name]
+            _formKey.currentState?.fields[FormEnumValues.password.code]
                 ?.invalidate(S.current.weak_password);
           } else if (state.status == RegisterStatus.emailAlreadyInUse) {
-            _formKey.currentState?.fields[FormEnumValues.email.name]
+            _formKey.currentState?.fields[FormEnumValues.email.code]
                 ?.invalidate(S.current.email_already_in_use);
           } else if (state.status == RegisterStatus.invalidEmail) {
-            _formKey.currentState?.fields[FormEnumValues.email.name]
+            _formKey.currentState?.fields[FormEnumValues.email.code]
                 ?.invalidate(S.current.invalid_email);
           } else if (state.status == RegisterStatus.operationNotAllowed) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -75,7 +75,7 @@ class RegisterView extends StatelessWidget {
                               enabled: state.status == RegisterStatus.loading
                                   ? false
                                   : true,
-                              name: FormEnumValues.email.name,
+                              name: FormEnumValues.email.code,
                               decoration: InputDecoration(
                                 labelText: S.current.email,
                               ),
@@ -93,7 +93,7 @@ class RegisterView extends StatelessWidget {
                               enabled: state.status == RegisterStatus.loading
                                   ? false
                                   : true,
-                              name: FormEnumValues.password.name,
+                              name: FormEnumValues.password.code,
                               decoration: InputDecoration(
                                 labelText: S.current.password,
                               ),
@@ -114,7 +114,7 @@ class RegisterView extends StatelessWidget {
                               enabled: state.status == RegisterStatus.loading
                                   ? false
                                   : true,
-                              name: FormEnumValues.confirmPassword.name,
+                              name: FormEnumValues.confirmPassword.code,
                               decoration: InputDecoration(
                                 labelText: S.current.confirm_password,
                               ),
@@ -135,9 +135,9 @@ class RegisterView extends StatelessWidget {
                                   _formKey.currentState?.save();
                                   context.read<RegisterCubit>().registerNewUser(
                                         _formKey.currentState!
-                                            .value[FormEnumValues.email.name],
+                                            .value[FormEnumValues.email.code],
                                         _formKey.currentState!.value[
-                                            FormEnumValues.password.name],
+                                            FormEnumValues.password.code],
                                       );
                                 }
                               }

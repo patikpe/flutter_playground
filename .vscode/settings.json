@@ -5,6 +5,7 @@
         "firebaseapp",
         "flutterfire",
         "flutterplaygroundfb",
-        "microtask"
+        "microtask",
+        "objectbox"
     ]
 }
