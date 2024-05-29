@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:logging/logging.dart';
 
 part 'setup_state.dart';
@@ -11,13 +10,13 @@ class SetupCubit extends Cubit<SetupState> {
   final _log = Logger('SetupCubit');
 
   void verifySignedInUser() {
-    var currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser != null) {
-      _log.info('User is signed in');
-      emit(state.copyWith(status: SetupStatus.redirectHomeScreen));
-    } else {
-      _log.info('User is not signed in');
-      emit(state.copyWith(status: SetupStatus.redirectLoginScreen));
-    }
+    // var currentUser = null;
+    // if (currentUser != null) {
+    //   _log.info('User is signed in');
+    //   emit(state.copyWith(status: SetupStatus.redirectHomeScreen));
+    // } else {
+    //   _log.info('User is not signed in');
+    //   emit(state.copyWith(status: SetupStatus.redirectLoginScreen));
+    // }
   }
 }
