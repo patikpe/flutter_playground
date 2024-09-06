@@ -1,5 +1,5 @@
 name: flutter_playground
-description: "A new Flutter project."
+description: "My Flutter Playground"
 publish_to: 'none'
 version: 0.1.0
 
@@ -19,6 +19,7 @@ dependencies:
   flutter_bloc: ^8.1.5
   flutter_form_builder: ^9.2.1
   flutter_native_splash: ^2.4.0
+  dio: ^5.7.0
 
 dev_dependencies:
   flutter_test:

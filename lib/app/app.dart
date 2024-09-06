@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_playground/utilities/app_status.dart';
+import 'package:flutter_playground/app/cubit/app_cubit.dart';
 import 'package:flutter_playground/app/router/app_router.dart';
 import 'package:flutter_playground/app/theme/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,19 +14,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'My Flutter Playground',
-      theme: FPTheme().lightTheme,
-      darkTheme: FPTheme().darkTheme,
-      themeMode: ThemeMode.system,
-      routerConfig: AppRouter().router,
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
+    return BlocProvider(
+      create: (context) => AppCubit(),
+      child: BlocBuilder<AppCubit, AppState>(
+        builder: (context, state) {
+          switch (state.status) {
+            case AppStatus.loading:
+              SchedulerBinding.instance.addPostFrameCallback((_) {
+                context.read<AppCubit>().getAppConfig();
+                FlutterNativeSplash.remove();
+              });
+              return Placeholder();
+            case AppStatus.loaded:
+              return MaterialApp.router(
+                title: state.appName,
+                theme: FPTheme().lightTheme,
+                darkTheme: FPTheme().darkTheme,
+                themeMode: ThemeMode.system,
+                routerConfig: AppRouter().router,
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+              );
+            default:
+              return Placeholder();
+            //TODO: Implement the default case
+          }
+        },
+      ),
     );
   }
 }
