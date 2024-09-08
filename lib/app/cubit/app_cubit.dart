@@ -22,7 +22,9 @@ class AppCubit extends Cubit<AppState> {
       emit(state.copyWith(
         status: AppStatus.loaded,
         appName: appConfig.items.first.name,
-        // mainColor: Color(appConfig.items?.first.appColor ?? 0xFF0000),
+        mainColor: Color(
+          int.parse(appConfig.items.first.appColor),
+        ),
       ));
     } catch (e) {
       _log.warning("Could not get AppConfig data, setting default.");

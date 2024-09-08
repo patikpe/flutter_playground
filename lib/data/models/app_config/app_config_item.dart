@@ -43,7 +43,7 @@ class Item {
   String toRawJson() => json.encode(toJson());
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
-        appColor: json["app_color"],
+        appColor: (json["app_color"] as String).replaceFirst('#', '0xFF'),
         collectionId: json["collectionId"],
         collectionName: json["collectionName"],
         created: DateTime.parse(json["created"]),

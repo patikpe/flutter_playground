@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FPTheme {
-  ThemeData get lightTheme => ThemeData(
+  static ThemeData lightTheme(Color mainColor) => ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+          seedColor: mainColor,
           brightness: Brightness.light,
         ),
         inputDecorationTheme: const InputDecorationTheme(
@@ -19,9 +19,9 @@ class FPTheme {
         )),
       );
 
-  ThemeData get darkTheme => ThemeData(
+  static ThemeData darkTheme(Color mainColor) => ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+          seedColor: mainColor,
           brightness: Brightness.dark,
         ),
         inputDecorationTheme: const InputDecorationTheme(

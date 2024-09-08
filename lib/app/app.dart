@@ -24,14 +24,14 @@ class MyApp extends StatelessWidget {
                 context.read<AppCubit>().getAppConfig();
                 FlutterNativeSplash.remove();
               });
-              return Placeholder();
+              return const Placeholder();
             case AppStatus.loaded:
               return MaterialApp.router(
                 title: state.appName,
-                theme: FPTheme().lightTheme,
-                darkTheme: FPTheme().darkTheme,
+                theme: FPTheme.lightTheme(state.mainColor),
+                darkTheme: FPTheme.darkTheme(state.mainColor),
                 themeMode: ThemeMode.system,
-                routerConfig: AppRouter().router,
+                routerConfig: AppRouter.router,
                 localizationsDelegates: const [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                 supportedLocales: S.delegate.supportedLocales,
               );
             default:
-              return Placeholder();
+              return const Placeholder();
             //TODO: Implement the default case
           }
         },
