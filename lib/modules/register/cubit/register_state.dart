@@ -1,25 +1,14 @@
 part of 'register_cubit.dart';
 
-enum RegisterStatus {
-  initial,
-  loading,
-  success,
-  error,
-  weakPassword,
-  emailAlreadyInUse,
-  invalidEmail,
-  operationNotAllowed,
-}
-
 final class RegisterState extends Equatable {
-  final RegisterStatus status;
+  final AppStatus status;
 
   const RegisterState({
-    this.status = RegisterStatus.initial,
+    this.status = AppStatus.loaded,
   });
 
   RegisterState copyWith({
-    RegisterStatus? status,
+    AppStatus? status,
   }) {
     return RegisterState(
       status: status ?? this.status,

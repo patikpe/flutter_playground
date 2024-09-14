@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_playground/l10n/generated/l10n.dart';
 import 'package:flutter_playground/modules/register/cubit/register_cubit.dart';
+import 'package:flutter_playground/utilities/app_status.dart';
 import 'package:flutter_playground/utilities/form_values_enum.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,30 +20,30 @@ class RegisterView extends StatelessWidget {
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
-          if (state.status == RegisterStatus.success) {
-            context.go('/home');
-          } else if (state.status == RegisterStatus.weakPassword) {
-            _formKey.currentState?.fields[FormEnumValues.password.code]
-                ?.invalidate(S.current.weak_password);
-          } else if (state.status == RegisterStatus.emailAlreadyInUse) {
-            _formKey.currentState?.fields[FormEnumValues.email.code]
-                ?.invalidate(S.current.email_already_in_use);
-          } else if (state.status == RegisterStatus.invalidEmail) {
-            _formKey.currentState?.fields[FormEnumValues.email.code]
-                ?.invalidate(S.current.invalid_email);
-          } else if (state.status == RegisterStatus.operationNotAllowed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(S.current.error_try_again),
-              ),
-            );
-          } else if (state.status == RegisterStatus.error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(S.current.error_try_again),
-              ),
-            );
-          }
+          // if (state.status == RegisterStatus.success) {
+          //   context.go('/home');
+          // } else if (state.status == RegisterStatus.weakPassword) {
+          //   _formKey.currentState?.fields[FormEnumValues.password.code]
+          //       ?.invalidate(S.current.weak_password);
+          // } else if (state.status == RegisterStatus.emailAlreadyInUse) {
+          //   _formKey.currentState?.fields[FormEnumValues.email.code]
+          //       ?.invalidate(S.current.email_already_in_use);
+          // } else if (state.status == RegisterStatus.invalidEmail) {
+          //   _formKey.currentState?.fields[FormEnumValues.email.code]
+          //       ?.invalidate(S.current.invalid_email);
+          // } else if (state.status == RegisterStatus.operationNotAllowed) {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     SnackBar(
+          //       content: Text(S.current.error_try_again),
+          //     ),
+          //   );
+          // } else if (state.status == RegisterStatus.error) {
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     SnackBar(
+          //       content: Text(S.current.error_try_again),
+          //     ),
+          //   );
+          // }
         },
         builder: (context, state) {
           return Scaffold(
@@ -72,7 +73,7 @@ class RegisterView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
-                              enabled: state.status == RegisterStatus.loading
+                              enabled: state.status == AppStatus.loading
                                   ? false
                                   : true,
                               name: FormEnumValues.email.code,
@@ -90,7 +91,7 @@ class RegisterView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
-                              enabled: state.status == RegisterStatus.loading
+                              enabled: state.status == AppStatus.loading
                                   ? false
                                   : true,
                               name: FormEnumValues.password.code,
@@ -111,10 +112,10 @@ class RegisterView extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 20),
                             child: FormBuilderTextField(
                               controller: _passwordConfirm,
-                              enabled: state.status == RegisterStatus.loading
+                              enabled: state.status == AppStatus.loading
                                   ? false
                                   : true,
-                              name: FormEnumValues.confirmPassword.code,
+                              name: FormEnumValues.passwordConfirm.code,
                               decoration: InputDecoration(
                                 labelText: S.current.confirm_password,
                               ),
@@ -128,21 +129,18 @@ class RegisterView extends StatelessWidget {
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              if (state.status != RegisterStatus.loading) {
+                              if (state.status != AppStatus.loading) {
                                 bool? isValid =
                                     _formKey.currentState?.validate();
                                 if (isValid == true) {
                                   _formKey.currentState?.save();
                                   context.read<RegisterCubit>().registerNewUser(
-                                        _formKey.currentState!
-                                            .value[FormEnumValues.email.code],
-                                        _formKey.currentState!.value[
-                                            FormEnumValues.password.code],
+                                        _formKey.currentState!.value,
                                       );
                                 }
                               }
                             },
-                            child: state.status == RegisterStatus.loading
+                            child: state.status == AppStatus.loading
                                 ? const CircularProgressIndicator()
                                 : Text(S.current.submit),
                           ),
@@ -151,7 +149,7 @@ class RegisterView extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (state.status != RegisterStatus.loading) {
+                        if (state.status != AppStatus.loading) {
                           context.push('/login');
                         }
                       },

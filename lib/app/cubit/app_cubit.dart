@@ -15,7 +15,7 @@ class AppCubit extends Cubit<AppState> {
   final Remote remote = Remote();
 
   void getAppConfig() async {
-    String appConfigUrl = 'api/collections/app_config/records/?page=1';
+    String appConfigUrl = 'api/collections/app_config/records/';
     try {
       Map<String, dynamic>? data = await remote.getRestCall(appConfigUrl);
       AppConfig appConfig = AppConfig.fromJson(data);
@@ -27,7 +27,7 @@ class AppCubit extends Cubit<AppState> {
         ),
       ));
     } catch (e) {
-      _log.warning("Could not get AppConfig data, setting default.");
+      _log.warning("Could not get AppConfig data, setting default.", e);
       emit(state.copyWith(status: AppStatus.loaded));
     }
   }

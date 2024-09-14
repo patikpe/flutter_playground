@@ -20,6 +20,7 @@ dependencies:
   flutter_form_builder: ^9.2.1
   flutter_native_splash: ^2.4.0
   dio: ^5.7.0
+  pocketbase: ^0.18.1
 
 dev_dependencies:
   flutter_test:

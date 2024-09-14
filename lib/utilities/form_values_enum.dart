@@ -1,7 +1,7 @@
 enum FormEnumValues {
   email(code: 'email'),
   password(code: 'password'),
-  confirmPassword(code: 'confirmPassword');
+  passwordConfirm(code: 'passwordConfirm');
 
   const FormEnumValues({required this.code});
 

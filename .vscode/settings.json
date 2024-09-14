@@ -6,6 +6,7 @@
         "flutterfire",
         "flutterplaygroundfb",
         "microtask",
-        "objectbox"
+        "objectbox",
+        "pocketbase"
     ]
 }
