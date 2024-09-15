@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_playground/utilities/app_status.dart';
 import 'package:flutter_playground/app/cubit/app_cubit.dart';
 import 'package:flutter_playground/app/router/app_router.dart';
 import 'package:flutter_playground/app/theme/theme.dart';
@@ -42,7 +41,7 @@ class MyApp extends StatelessWidget {
               );
             default:
               return const Placeholder();
-            //TODO: Implement the default case
+            //TODO: Implement the default case for general errors
           }
         },
       ),

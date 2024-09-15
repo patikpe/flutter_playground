@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/data/models/app_config/app_config.dart';
-import 'package:flutter_playground/utilities/app_status.dart';
 import 'package:flutter_playground/utilities/remote.dart';
 import 'package:logging/logging.dart';
 

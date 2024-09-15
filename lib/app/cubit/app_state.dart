@@ -1,5 +1,11 @@
 part of 'app_cubit.dart';
 
+enum AppStatus {
+  loading,
+  loaded,
+  error,
+}
+
 final class AppState extends Equatable {
   final AppStatus status;
   final String appName;
